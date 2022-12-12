@@ -164,7 +164,7 @@ export default function Mqtt() {
         </p>
       </div>
       <div className="">
-        <div className=" flex md:flex flex-col items-center  ">
+        <div className=" flex md:flex flex-col items-center ">
           <input className={inputStyle} ref={topicRef} placeholder='add topic subscription' type="text" />
           <button className={buttonStyle} onClick={(e) => addTopic(e)}>Add</button>
         </div>
