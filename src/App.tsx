@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import mqtt, { MqttClient } from "precompiled-mqtt";
 import uuid from "react-uuid";
-
+import { NavBar } from "./components/Nav";
 
 type topic = {
   [topic: string]: {
@@ -140,7 +140,8 @@ export default function Mqtt() {
 
   return (
     <div className="bg-gray-600 min-h-screen min-w-screen flex flex-col">
-      <h1 className="text-gray-100 text-2xl p-3 self-center">MQTT</h1>
+      <NavBar />
+      <h1 className="text-gray-100 text-2xl p-3 self-center">MQTT Taster</h1>
       <div className="flex flex-col items-center">
         <form className="">
           <select className='m-2 h-8 w-24' onChange={(e) => { let newprotocol = e.currentTarget.value; setProtocol(newprotocol); console.log(protocol) }} >{protocols.map((protocol) => {
@@ -152,7 +153,7 @@ export default function Mqtt() {
           <input className={inputStyle} onChange={(e) => handleOptions(e)} type="text" id='username' placeholder="username" />
           <input className={inputStyle} type="text" placeholder="pass" />
         </form>
-        <div className="flex flex-row items-center">
+        <div className=" flex md:flex flex-row items-center">
           <button disabled={connectionStatus.status} className={buttonStyle} onClick={(e) => clientConnect(e)}>Connect</button>
           <button className={buttonStyle} onClick={(e) => { clientDisconnect(e) }}>Disconnect</button>
         </div>
@@ -163,16 +164,15 @@ export default function Mqtt() {
         </p>
       </div>
       <div className="">
-        <div className=" flex flex-col items-center  ">
+        <div className=" flex md:flex flex-col items-center  ">
           <input className={inputStyle} ref={topicRef} placeholder='add topic subscription' type="text" />
           <button className={buttonStyle} onClick={(e) => addTopic(e)}>Add</button>
         </div>
-        <div className="flex flex-col items-center ">
+        <div className="flex md:flex flex-col items-center ">
           <input className={inputStyle} onChange={(e) => { setTopicPublish(e.currentTarget.value) }} type="text" placeholder="topic" />
           <input className={inputStyle} onChange={(e) => { setMessagePublish(e.currentTarget.value) }} type="text" value={messagePublish} placeholder="message" />
           <button onClick={(e) => publish(e)} className={buttonStyle}>Publish to Topic</button>
         </div>
-
       </div>
       <p className="bg-gray-700 text-white border-b-2 border-black">Topics:</p>
       <p className="bg-gray-400 text-red-600">
@@ -196,10 +196,8 @@ export default function Mqtt() {
         )
       })
       }
-
       <div >
         <p className="bg-gray-700 border-b-2 text-white border-black"> Messages:</p>
-
         {messages.map((item) => {
           if (topicsList.includes(item.key) || topicsList.includes('#'))
             return (
@@ -212,6 +210,10 @@ export default function Mqtt() {
       </div>
       <div className="messagesList">
       </div>
+      <footer>
+        <div className="flex w-1/2">
+        </div>
+      </footer>
     </div>
   );
 }
