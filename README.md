@@ -4,7 +4,7 @@ I needed a way to quickly test my MQTT broker so I put together this simple vite
 
 This is a project using Vite, React, Typescript, and TailwindCSS.
 
-**To use this project
+## To use this project
 
  git clone https://github.com/Dnapert/mosquittoTaster.git
  
